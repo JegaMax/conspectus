@@ -2,66 +2,74 @@
 
 import styled from "styled-components";
 import { motion } from "framer-motion";
-import type { Experience } from "@/types/portfolio";
+import type { Experience, SectionHeadingContent } from "@/types/portfolio";
 import { SectionContainer } from "@/components/common/SectionContainer";
 import { SectionHeading } from "@/components/common/SectionHeading";
 
 type ExperienceSectionProps = {
+  heading: SectionHeadingContent;
   experiences: Experience[];
 };
 
-export function ExperienceSection({ experiences }: ExperienceSectionProps) {
+export function ExperienceSection({
+  heading,
+  experiences,
+}: ExperienceSectionProps) {
   return (
     <SectionContainer id="experience" background="surface-alt">
       <SectionHeading
-        eyebrow="Experience"
-        title="Building solutions across multidisciplinary teams."
-        subtitle="From leading IoT initiatives to crafting performant web experiences, I focus on collaboration, clarity, and measurable outcomes."
+        eyebrow={heading.eyebrow}
+        title={heading.title}
+        subtitle={heading.subtitle}
         align="left"
       />
 
-      <ExperienceList>
-        {experiences.map((experience, index) => (
-          <ExperienceCard
-            key={`${experience.role}-${experience.period}`}
-            initial={{ opacity: 0, y: 32 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, amount: 0.35 }}
-            transition={{
-              duration: 0.55,
-              ease: [0.16, 1, 0.3, 1],
-              delay: index * 0.08,
-            }}
-          >
-            <Header>
-              <Role>{experience.role}</Role>
-              <Company>{experience.company}</Company>
-              <MetaRow>
-                <MetaItem>{experience.period}</MetaItem>
-                <Separator aria-hidden="true">•</Separator>
-                <MetaItem>{experience.location}</MetaItem>
-              </MetaRow>
-            </Header>
+        <ExperienceList>
+          {experiences.map((experience, index) => (
+            <ExperienceCard
+              key={`${experience.role}-${experience.period}`}
+              initial={{ opacity: 0, y: 32 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, amount: 0.35 }}
+              transition={{
+                duration: 0.55,
+                ease: [0.16, 1, 0.3, 1],
+                delay: index * 0.08,
+              }}
+            >
+              <Header>
+                <Role>{experience.role}</Role>
+                {experience.company ? <Company>{experience.company}</Company> : null}
+                {experience.period || experience.location ? (
+                  <MetaRow>
+                    {experience.period ? <MetaItem>{experience.period}</MetaItem> : null}
+                    {experience.period && experience.location ? (
+                      <Separator aria-hidden="true">•</Separator>
+                    ) : null}
+                    {experience.location ? <MetaItem>{experience.location}</MetaItem> : null}
+                  </MetaRow>
+                ) : null}
+              </Header>
 
-            <Description>{experience.description}</Description>
+              <Description>{experience.description}</Description>
 
-            <AchievementList>
-              {experience.achievements.map((achievement) => (
-                <AchievementItem key={achievement}>
-                  <AchievementBullet aria-hidden="true">▹</AchievementBullet>
-                  <span>{achievement}</span>
-                </AchievementItem>
-              ))}
-            </AchievementList>
+              <AchievementList>
+                {experience.achievements.map((achievement) => (
+                  <AchievementItem key={achievement}>
+                    <AchievementBullet aria-hidden="true">▹</AchievementBullet>
+                    <span>{achievement}</span>
+                  </AchievementItem>
+                ))}
+              </AchievementList>
 
-            <TagRow>
-              {experience.tags.map((tag) => (
-                <Tag key={tag}>{tag}</Tag>
-              ))}
-            </TagRow>
-          </ExperienceCard>
-        ))}
-      </ExperienceList>
+              <TagRow>
+                {experience.tags.map((tag) => (
+                  <Tag key={tag}>{tag}</Tag>
+                ))}
+              </TagRow>
+            </ExperienceCard>
+          ))}
+        </ExperienceList>
     </SectionContainer>
   );
 }

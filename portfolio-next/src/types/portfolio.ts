@@ -8,6 +8,12 @@ export type SectionId =
   | "experience"
   | "contact";
 
+export interface SectionHeadingContent {
+  eyebrow?: string;
+  title: string;
+  subtitle?: string;
+}
+
 export interface NavItem {
   id: SectionId;
   label: string;
@@ -57,8 +63,7 @@ export interface HeroContent {
 }
 
 export interface AboutContent {
-  title: string;
-  statement: string;
+  heading: SectionHeadingContent;
   bio: string[];
   highlights: string[];
   skillGroups: SkillGroup[];
@@ -98,7 +103,7 @@ export interface Course {
   name: string;
   provider: string;
   duration: string;
-  focus: string;
+  focus?: string;
 }
 
 export interface Experience {
@@ -120,8 +125,7 @@ export interface ContactChannel {
 }
 
 export interface ContactContent {
-  title: string;
-  subtitle: string;
+  heading: SectionHeadingContent;
   availability: string;
   channels: ContactChannel[];
   socials: ContactChannel[];
@@ -131,9 +135,21 @@ export interface PortfolioContent {
   nav: NavItem[];
   hero: HeroContent;
   about: AboutContent;
-  education: TimelineEntry[];
-  projects: Project[];
-  courses: Course[];
-  experience: Experience[];
+  education: {
+    heading: SectionHeadingContent;
+    entries: TimelineEntry[];
+  };
+  projects: {
+    heading: SectionHeadingContent;
+    items: Project[];
+  };
+  courses: {
+    heading: SectionHeadingContent;
+    items: Course[];
+  };
+  experience: {
+    heading: SectionHeadingContent;
+    items: Experience[];
+  };
   contact: ContactContent;
 }

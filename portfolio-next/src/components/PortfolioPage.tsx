@@ -32,10 +32,22 @@ export function PortfolioPage({ data }: PortfolioPageProps) {
         <HeroSection content={data.hero} />
         <SectionStack>
           <AboutSection content={data.about} />
-          <EducationSection entries={data.education} />
-          <ProjectsSection projects={data.projects} />
-          <CoursesSection courses={data.courses} />
-          <ExperienceSection experiences={data.experience} />
+          <EducationSection
+            heading={data.education.heading}
+            entries={data.education.entries}
+          />
+          <ProjectsSection
+            heading={data.projects.heading}
+            projects={data.projects.items}
+          />
+          <CoursesSection
+            heading={data.courses.heading}
+            courses={data.courses.items}
+          />
+          <ExperienceSection
+            heading={data.experience.heading}
+            experiences={data.experience.items}
+          />
           <ContactSection content={data.contact} />
         </SectionStack>
       </Main>

@@ -4,11 +4,12 @@ import styled from "styled-components";
 import { motion } from "framer-motion";
 import Image from "next/image";
 import Link from "next/link";
-import type { Project } from "@/types/portfolio";
+import type { Project, SectionHeadingContent } from "@/types/portfolio";
 import { SectionContainer } from "@/components/common/SectionContainer";
 import { SectionHeading } from "@/components/common/SectionHeading";
 
 type ProjectsSectionProps = {
+  heading: SectionHeadingContent;
   projects: Project[];
 };
 
@@ -32,13 +33,13 @@ const cardVariants = {
   },
 };
 
-export function ProjectsSection({ projects }: ProjectsSectionProps) {
+export function ProjectsSection({ heading, projects }: ProjectsSectionProps) {
   return (
     <SectionContainer id="projects" background="surface-alt">
       <SectionHeading
-        eyebrow="Projects"
-        title="Selected work combining research, engineering, and storytelling."
-        subtitle="Each project blends rigorous engineering with thoughtful UX to deliver measurable impact."
+        eyebrow={heading.eyebrow}
+        title={heading.title}
+        subtitle={heading.subtitle}
         align="left"
       />
 

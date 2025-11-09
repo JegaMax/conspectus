@@ -21,6 +21,8 @@ const formSchema = z.object({
 });
 
 export function ContactSection({ content }: ContactSectionProps) {
+  const { heading } = content;
+
   const [formValues, setFormValues] = useState({
     name: "",
     email: "",
@@ -93,9 +95,9 @@ export function ContactSection({ content }: ContactSectionProps) {
       <ContactShell>
         <LeftColumn>
           <SectionHeading
-            eyebrow="Contact"
-            title={content.title}
-            subtitle={content.subtitle}
+            eyebrow={heading.eyebrow}
+            title={heading.title}
+            subtitle={heading.subtitle}
             align="left"
           />
           <Availability>{content.availability}</Availability>
@@ -236,6 +238,7 @@ const Availability = styled.p`
   font-size: 0.98rem;
   color: ${({ theme }) => theme.colors.textMuted};
   line-height: 1.7;
+  white-space: pre-line;
 `;
 
 const ChannelGrid = styled.div`

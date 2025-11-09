@@ -80,4 +80,5 @@ const Subtitle = styled(motion.p)`
   font-size: clamp(1rem, 2vw, 1.1rem);
   color: ${({ theme }) => theme.colors.textMuted};
   max-width: 720px;
+  white-space: pre-line;
 `;

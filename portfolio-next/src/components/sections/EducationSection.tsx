@@ -3,21 +3,28 @@
 import styled from "styled-components";
 import { motion } from "framer-motion";
 import Image from "next/image";
-import type { TimelineEntry } from "@/types/portfolio";
+import type {
+  SectionHeadingContent,
+  TimelineEntry,
+} from "@/types/portfolio";
 import { SectionContainer } from "@/components/common/SectionContainer";
 import { SectionHeading } from "@/components/common/SectionHeading";
 
 type EducationSectionProps = {
+  heading: SectionHeadingContent;
   entries: TimelineEntry[];
 };
 
-export function EducationSection({ entries }: EducationSectionProps) {
+export function EducationSection({
+  heading,
+  entries,
+}: EducationSectionProps) {
   return (
     <SectionContainer id="education" background="surface-alt">
       <SectionHeading
-        eyebrow="Education"
-        title="Academic journey focused on engineering excellence."
-        subtitle="Grounded in electronics and communication, expanding into IoT, software engineering, and human-centred design."
+        eyebrow={heading.eyebrow}
+        title={heading.title}
+        subtitle={heading.subtitle}
         align="left"
       />
 

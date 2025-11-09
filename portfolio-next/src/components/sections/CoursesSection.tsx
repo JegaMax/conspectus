@@ -2,21 +2,22 @@
 
 import styled from "styled-components";
 import { motion } from "framer-motion";
-import type { Course } from "@/types/portfolio";
+import type { Course, SectionHeadingContent } from "@/types/portfolio";
 import { SectionContainer } from "@/components/common/SectionContainer";
 import { SectionHeading } from "@/components/common/SectionHeading";
 
 type CoursesSectionProps = {
+  heading: SectionHeadingContent;
   courses: Course[];
 };
 
-export function CoursesSection({ courses }: CoursesSectionProps) {
+export function CoursesSection({ heading, courses }: CoursesSectionProps) {
   return (
     <SectionContainer id="courses" background="surface">
       <SectionHeading
-        eyebrow="Courses"
-        title="Continuous learning that keeps my toolkit current."
-        subtitle="Short-format certifications and workshops that expand my capabilities in software, automation, and strategy."
+        eyebrow={heading.eyebrow}
+        title={heading.title}
+        subtitle={heading.subtitle}
         align="left"
       />
 
@@ -47,7 +48,7 @@ export function CoursesSection({ courses }: CoursesSectionProps) {
             <Title>{course.name}</Title>
             <Provider>{course.provider}</Provider>
             <Duration>{course.duration}</Duration>
-            <Focus>{course.focus}</Focus>
+            {course.focus ? <Focus>{course.focus}</Focus> : null}
           </CourseCard>
         ))}
       </CourseList>

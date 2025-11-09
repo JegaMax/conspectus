@@ -11,12 +11,14 @@ type AboutSectionProps = {
 };
 
 export function AboutSection({ content }: AboutSectionProps) {
+  const { heading } = content;
+
   return (
     <SectionContainer id="about" background="surface">
       <SectionHeading
-        eyebrow="About"
-        title="A developer who thrives at the intersection of hardware and web."
-        subtitle={content.statement}
+        eyebrow={heading.eyebrow}
+        title={heading.title}
+        subtitle={heading.subtitle}
         align="left"
       />
 
